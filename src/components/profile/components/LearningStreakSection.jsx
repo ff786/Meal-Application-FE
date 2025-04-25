@@ -44,7 +44,7 @@ const LearningStreakSection = ({ user, refreshTrigger }) => {
     return (
       <div className="bg-white shadow-md rounded-lg p-6 mt-4">
         <h2 className="text-lg font-semibold text-ExtraDarkColor mb-4 flex items-center">
-          <i className='bx bx-flame mr-2'></i>Learning Streak
+          <i className='bx bx-flame mr-2'></i>Healthy Streak
         </h2>
         <div className="flex justify-center py-4">
           <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-DarkColor"></div>
@@ -56,7 +56,7 @@ const LearningStreakSection = ({ user, refreshTrigger }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mt-4">
       <h2 className="text-lg font-semibold text-ExtraDarkColor mb-4 flex items-center">
-        <i className='bx bx-flame mr-2'></i>Learning Streak
+        <i className='bx bx-flame mr-2'></i>Healthy Streak
       </h2>
       
       {/* Enhanced Current Streak Display */}
@@ -74,7 +74,7 @@ const LearningStreakSection = ({ user, refreshTrigger }) => {
                 {streakData.currentStreak > 7 ? 'On fire!' : 'Keep it up!'}
               </div>
             ) : (
-              <div className="text-xs text-gray-500">Start learning today!</div>
+              <div className="text-xs text-gray-500">Start planing your meal today!</div>
             )}
           </div>
         </div>
@@ -142,14 +142,14 @@ const LearningStreakSection = ({ user, refreshTrigger }) => {
       
       {streakData.lastLearningDate && (
         <div className="mb-4 text-center text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
-          Last learning activity: <span className="font-medium">{new Date(streakData.lastLearningDate).toLocaleDateString()}</span>
+          Last planing activity: <span className="font-medium">{new Date(streakData.lastLearningDate).toLocaleDateString()}</span>
         </div>
       )}
       
       {/* Improved Activity Heatmap */}
       <div className="border-t border-gray-200 pt-4">
         <h3 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
-          <i className='bx bx-calendar-check mr-1'></i> Learning Activity
+          <i className='bx bx-calendar-check mr-1'></i> Planing Activity
         </h3>
         <div className="bg-gray-50 p-4 rounded-lg">
           {Object.keys(streakData.heatmapData || {}).length > 0 ? (

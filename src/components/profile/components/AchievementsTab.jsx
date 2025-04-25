@@ -200,7 +200,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     
     if (learningUpdates.length > 0) {
       achievements.push({
-        title: 'First Learning Update',
+        title: '	First Meal Logged',
         icon: 'bx-star',
         color: 'text-yellow-500',
         achieved: true
@@ -213,14 +213,14 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     );
     
     achievements.push({
-      title: 'Skill Collector',
+      title: 'Recipe Collector',
       icon: 'bx-collection',
       color: 'text-purple-500',
       achieved: uniqueSkills.size >= 5
     });
     
     achievements.push({
-      title: 'Learning Addict',
+      title: 'Meal Prep Enthusiast',
       icon: 'bx-book-bookmark',
       color: 'text-blue-500',
       achieved: learningUpdates.length >= 10
@@ -233,14 +233,14 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
       const daysDifference = Math.floor((latestDate - earliestDate) / (1000 * 60 * 60 * 24));
       
       achievements.push({
-        title: 'Consistent Learner',
+        title: 'Consistent Eater',
         icon: 'bx-calendar-check',
         color: 'text-green-500',
         achieved: daysDifference >= 30
       });
     } else {
       achievements.push({
-        title: 'Consistent Learner',
+        title: 'Consistent Eater',
         icon: 'bx-calendar-check',
         color: 'text-green-500',
         achieved: false
@@ -249,7 +249,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     
     const totalHours = learningUpdates.reduce((sum, update) => sum + (update.hoursSpent || 0), 0);
     achievements.push({
-      title: 'Hard Worker',
+      title: 'Healthy Habit Builder',
       icon: 'bx-time',
       color: 'text-pink-500',
       achieved: totalHours >= 50
@@ -257,7 +257,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     
     const hasAdvanced = learningUpdates.some(update => update.difficulty === 'ADVANCED');
     achievements.push({
-      title: 'Advanced Learner',
+      title: 'Master Meal Planner',
       icon: 'bx-medal',
       color: 'text-red-500',
       achieved: hasAdvanced
@@ -280,7 +280,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     <div className="space-y-6">
       {/* Achievements Section */}
       <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-        <h2 className="text-lg font-semibold mb-4">Achievements</h2>
+        <h2 className="text-lg font-semibold mb-4">Plan Achievements</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {achievements.map((achievement, index) => (
             <div 
@@ -298,7 +298,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
       {/* Learning Progress Section */}
       <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">Learning Progress</h2>
+          <h2 className="text-lg font-semibold">Meal Journey</h2>
           {isCurrentUserProfile && (
             <button
               onClick={() => {
@@ -399,7 +399,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
         
         {learningUpdates.length > 0 && (
           <div className="mt-6 pt-6 border-t border-gray-200">
-            <h3 className="text-md font-semibold mb-4">Learning Summary</h3>
+            <h3 className="text-md font-semibold mb-4">Meal Log</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div className="bg-gray-50 p-3 rounded-lg text-center">
                 <div className="text-2xl font-bold text-DarkColor">{learningUpdates.length}</div>

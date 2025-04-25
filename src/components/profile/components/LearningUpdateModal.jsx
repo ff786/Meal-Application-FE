@@ -91,7 +91,7 @@ const LearningUpdateModal = ({ isOpen, onClose, onSubmit, templates, isEditMode 
         <div className="p-6">
           {step === 1 ? (
             <div className="space-y-4">
-              <p className="text-gray-600 mb-4">Select the type of learning update you want to add:</p>
+              <p className="text-gray-600 mb-4">Select the type of meal update you want to add:</p>
               
               {templates && templates.map((template, index) => (
                 <div 

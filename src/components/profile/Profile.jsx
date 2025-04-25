@@ -628,7 +628,7 @@ const Profile = () => {
                   }`}
                 >
                   <i className="bx bx-book-open mr-2 text-lg"></i>
-                  Learning
+                  Meal PLaning
                 </button>
                 <button
                   onClick={() => setActiveTab('achievements')}
