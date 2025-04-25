@@ -494,7 +494,7 @@ const Navbar = ({ user }) => {
             <button 
               className="p-2 rounded-full hover:bg-gray-100 transition-colors"
               onClick={() => navigate('/learning-plans')}
-              title="Learning Plans"
+              title="Meal Plans"
             >
               <i className='bx bx-book-open text-xl text-DarkColor'></i>
             </button>

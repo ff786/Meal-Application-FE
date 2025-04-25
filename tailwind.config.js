@@ -25,10 +25,10 @@ module.exports = {
         '1200': '1200ms',
       },
       colors: {
-        PrimaryColor: "#f8fafc",     // Light background
-        SecondaryColor: "#94a3b8",   // Medium tone for secondary elements
-        DarkColor: "#334155",        // Dark blue-gray for primary elements
-        ExtraDarkColor: "#0f172a",   // Deep blue-black for emphasis and headers
+        PrimaryColor: "#fff7f0",     // Light peach background – soft and appetizing
+        SecondaryColor: "#ffc285", // Mellow orange – for highlights and accents
+        DarkColor: "#ff8c42",        // Bold orange – strong and vibrant primary color
+        ExtraDarkColor: "#cc5803",    // Deep burnt orange – for headers, buttons, or emphasis
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
