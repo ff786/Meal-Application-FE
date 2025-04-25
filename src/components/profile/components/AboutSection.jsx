@@ -1,4 +1,5 @@
 import React from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const AboutSection = ({
   user,
@@ -89,7 +90,7 @@ const AboutSection = ({
             ></textarea>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Skills (comma separated)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Nutrients (comma separated)</label>
             <input
               type="text"
               value={editForm.skills.join(', ')}
@@ -121,7 +122,7 @@ const AboutSection = ({
             <p className="text-gray-700 leading-relaxed">{user.bio || 'No bio provided yet.'}</p>
           </div>
           <h3 className="text-md font-semibold text-ExtraDarkColor mb-2 flex items-center">
-            <i className='bx bx-code-alt mr-2'></i>Skills
+            <i className='fa fa-leaf mr-2'></i>Nutrients
           </h3>
           <div className="flex flex-wrap gap-2">
             {user.skills && user.skills.length > 0 ? (
@@ -134,7 +135,7 @@ const AboutSection = ({
                 </span>
               ))
             ) : (
-              <p className="text-gray-500 text-sm">No skills added yet.</p>
+              <p className="text-gray-500 text-sm">No added yet.</p>
             )}
           </div>
         </>

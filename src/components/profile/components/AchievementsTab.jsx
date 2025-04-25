@@ -3,6 +3,7 @@ import { API_BASE_URL } from '../../../config/apiConfig';
 import { useToast } from '../../common/Toast';
 import LearningUpdateModal from './LearningUpdateModal';
 import ConfirmDialog from '../../common/ConfirmDialog';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
   const { addToast } = useToast();
@@ -174,10 +175,10 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
 
   const getCategoryIcon = (category) => {
     switch (category) {
-      case 'TUTORIAL': return 'bx-book-reader';
-      case 'COURSE': return 'bx-certification';
-      case 'PROJECT': return 'bx-code-block';
-      default: return 'bx-code';
+      case 'TUTORIAL': return 'fa-utensils';
+      case 'COURSE': return 'fa-lemon';
+      case 'PROJECT': return 'fa-clipboard-list';
+      default: return 'fa-layer-group';
     }
   };
 
@@ -201,7 +202,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     if (learningUpdates.length > 0) {
       achievements.push({
         title: '	First Meal Logged',
-        icon: 'bx-star',
+        icon: 'fa-utensils',
         color: 'text-yellow-500',
         achieved: true
       });
@@ -214,14 +215,14 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     
     achievements.push({
       title: 'Recipe Collector',
-      icon: 'bx-collection',
+      icon: 'fa-book-open',
       color: 'text-purple-500',
       achieved: uniqueSkills.size >= 5
     });
     
     achievements.push({
       title: 'Meal Prep Enthusiast',
-      icon: 'bx-book-bookmark',
+      icon: 'fa-calendar-check',
       color: 'text-blue-500',
       achieved: learningUpdates.length >= 10
     });
@@ -234,14 +235,14 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
       
       achievements.push({
         title: 'Consistent Eater',
-        icon: 'bx-calendar-check',
+        icon: 'fa-history',
         color: 'text-green-500',
         achieved: daysDifference >= 30
       });
     } else {
       achievements.push({
         title: 'Consistent Eater',
-        icon: 'bx-calendar-check',
+        icon: 'fa-history',
         color: 'text-green-500',
         achieved: false
       });
@@ -250,7 +251,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     const totalHours = learningUpdates.reduce((sum, update) => sum + (update.hoursSpent || 0), 0);
     achievements.push({
       title: 'Healthy Habit Builder',
-      icon: 'bx-time',
+      icon: 'fa-heart',
       color: 'text-pink-500',
       achieved: totalHours >= 50
     });
@@ -258,7 +259,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
     const hasAdvanced = learningUpdates.some(update => update.difficulty === 'ADVANCED');
     achievements.push({
       title: 'Master Meal Planner',
-      icon: 'bx-medal',
+      icon: 'fa-clipboard-list',
       color: 'text-red-500',
       achieved: hasAdvanced
     });
@@ -287,7 +288,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
               key={index} 
               className={`p-4 rounded-lg shadow-sm border text-center ${achievement.achieved ? 'border-gray-200 bg-white' : 'border-gray-100 bg-gray-50 opacity-50'}`}
             >
-              <i className={`bx ${achievement.icon} text-3xl ${achievement.achieved ? achievement.color : 'text-gray-400'} mb-2`}></i>
+              <i className={`fa ${achievement.icon} text-3xl ${achievement.achieved ? achievement.color : 'text-gray-400'} mb-2`}></i>
               <p className="text-sm font-medium">{achievement.title}</p>
               {!achievement.achieved && <p className="text-xs text-gray-500 mt-1">Not achieved yet</p>}
             </div>
@@ -320,7 +321,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
                 <div className="flex justify-between items-start">
                   <div className="flex items-center">
                     <div className="h-10 w-10 bg-DarkColor rounded-full flex items-center justify-center text-white">
-                      <i className={`bx ${getCategoryIcon(update.category)} text-xl`}></i>
+                      <i className={`fa ${getCategoryIcon(update.category)} text-xl`}></i>
                     </div>
                     <div className="ml-3">
                       <h3 className="font-semibold text-lg">{update.title || update.resourceName}</h3>
@@ -415,7 +416,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
                 <div className="text-2xl font-bold text-DarkColor">
                   {new Set(learningUpdates.flatMap(update => update.skillsLearned || [])).size}
                 </div>
-                <div className="text-sm text-gray-500">Skills</div>
+                <div className="text-sm text-gray-500">Nutrients</div>
               </div>
               <div className="bg-gray-50 p-3 rounded-lg text-center">
                 <div className="text-2xl font-bold text-DarkColor">

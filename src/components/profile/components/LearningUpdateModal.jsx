@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const LearningUpdateModal = ({ isOpen, onClose, onSubmit, templates, isEditMode = false, updateToEdit = null }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -101,18 +102,18 @@ const LearningUpdateModal = ({ isOpen, onClose, onSubmit, templates, isEditMode 
                 >
                   <div className="flex items-center">
                     <div className="w-10 h-10 rounded-full bg-DarkColor text-white flex items-center justify-center">
-                      <i className={`bx ${
-                        template.category === 'TUTORIAL' ? 'bx-book-reader' : 
-                        template.category === 'COURSE' ? 'bx-certification' :
-                        'bx-code-block'
+                      <i className={`fa ${
+                        template.category === 'TUTORIAL' ? 'fa-utensils' : 
+                        template.category === 'COURSE' ? 'fa-lemon' :
+                        'fa-clipboard-list'
                       } text-xl`}></i>
                     </div>
                     <div className="ml-3">
                       <h4 className="font-medium">{template.title}</h4>
                       <p className="text-sm text-gray-500">
-                        {template.category === 'TUTORIAL' ? 'Record completion of online tutorials or guides' : 
-                         template.category === 'COURSE' ? 'Track your progress through structured courses' :
-                         'Showcase projects you\'ve built while learning'}
+                        {template.category === 'TUTORIAL' ? 'Track any meal you have eaten — breakfast, lunch, dinner, or snacks' : 
+                         template.category === 'COURSE' ? 'Share a new dish you cooked or discovered' :
+                         'Show your meal prep for the day or week!'}
                       </p>
                     </div>
                   </div>
@@ -179,11 +180,12 @@ const LearningUpdateModal = ({ isOpen, onClose, onSubmit, templates, isEditMode 
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-DarkColor"
                         value={formData.skillsLearned ? formData.skillsLearned.join(', ') : ''}
                         onChange={(e) => handleSkillsChange(e.target.value)}
-                        placeholder="Separate skills with commas"
+                        placeholder="Separate words with commas"
                         required={field.required}
                       />
-                      <p className="text-xs text-gray-500 mt-1">Example: JavaScript, React, CSS</p>
+                       <p className="text-xs text-gray-500 mt-1">Example: Protein,Fiber,Vitamins</p>
                     </div>
+                    
                   )}
                 </div>
               ))}
@@ -202,7 +204,7 @@ const LearningUpdateModal = ({ isOpen, onClose, onSubmit, templates, isEditMode 
                   type="submit"
                   className="px-4 py-2 bg-DarkColor text-white rounded-md hover:bg-ExtraDarkColor"
                 >
-                  {isEditMode ? 'Update' : 'Add Learning Update'}
+                  {isEditMode ? 'Update' : 'Add Planing Update'}
                 </button>
               </div>
             </form>
