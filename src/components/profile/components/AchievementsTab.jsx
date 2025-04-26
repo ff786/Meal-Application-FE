@@ -416,7 +416,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
                 <div className="text-2xl font-bold text-DarkColor">
                   {new Set(learningUpdates.flatMap(update => update.skillsLearned || [])).size}
                 </div>
-                <div className="text-sm text-gray-500">Nutrients</div>
+                <div className="text-sm text-gray-500">Focus on</div>
               </div>
               <div className="bg-gray-50 p-3 rounded-lg text-center">
                 <div className="text-2xl font-bold text-DarkColor">

@@ -183,7 +183,7 @@ const LearningUpdateModal = ({ isOpen, onClose, onSubmit, templates, isEditMode 
                         placeholder="Separate words with commas"
                         required={field.required}
                       />
-                       <p className="text-xs text-gray-500 mt-1">Example: Protein,Fiber,Vitamins</p>
+                       <p className="text-xs text-gray-500 mt-1">Example: High protein, Vegetarian, Budget-friendly, Low sugar, Quick prep</p>
                     </div>
                     
                   )}

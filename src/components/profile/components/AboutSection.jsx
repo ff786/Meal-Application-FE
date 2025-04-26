@@ -122,7 +122,7 @@ const AboutSection = ({
             <p className="text-gray-700 leading-relaxed">{user.bio || 'No bio provided yet.'}</p>
           </div>
           <h3 className="text-md font-semibold text-ExtraDarkColor mb-2 flex items-center">
-            <i className='fa fa-leaf mr-2'></i>Nutrients
+            <i className='fa fa-leaf mr-2'></i>Focus On
           </h3>
           <div className="flex flex-wrap gap-2">
             {user.skills && user.skills.length > 0 ? (
