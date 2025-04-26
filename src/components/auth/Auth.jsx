@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
 import { AUTH_ENDPOINTS } from '../../config/apiConfig';
 import { useToast } from '../common/Toast';
+import  backgroundImage from '../../assets/logobg.jpg';
 
 const Auth = () => {
     const [isActive, setIsActive] = useState(false);
@@ -17,6 +18,17 @@ const Auth = () => {
     });
     const navigate = useNavigate();
     const { addToast } = useToast();
+
+    const containerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '100vh',
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    };
 
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
@@ -85,7 +97,7 @@ const Auth = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-200 to-PrimaryColor">
+        <div style={containerStyle } >
             {/* No more AlertMessage component */}
             
             <div className="relative w-[850px] h-[550px] bg-white m-5 rounded-3xl shadow-lg overflow-hidden">
@@ -133,7 +145,7 @@ const Auth = () => {
                 </div>
 
                 {/* Register Form Box */}
-                <div className={`absolute w-1/2 h-full bg-white flex items-center text-gray-800 text-center p-10 z-10 transition-all duration-700 ease-in-out ${isActive ? 'opacity-100 left-0' : 'opacity-0 pointer-events-none right-0'}`}>
+                <div className={`absolute w-[450px] min-h-[90vh] h-auto bg-white flex items-center text-gray-800 text-center p-10 z-10 transition-all duration-700 ease-in-out ${isActive ? 'opacity-100 left-0' : 'opacity-0 pointer-events-none right-0'}`}>
                     <form onSubmit={handleRegisterSubmit} className="w-full">
                         <h1 className="text-4xl -mt-2.5 mb-0">Registration</h1>
                         <div className="grid grid-cols-2 gap-4 mt-6">
@@ -226,7 +238,7 @@ const Auth = () => {
                     </div>
 
                     {/* Right panel - visible when active */}
-                    <div className={`absolute right-0 w-1/2 h-full flex flex-col justify-center items-center z-20 transition-all duration-700 ease-in-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'} text-ExtraDarkColor`}>
+                    <div className={`absolute right-0 w-1/2 h-full flex flex-col justify-center items-center z-20 transition-all duration-700 ease-in-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'} text-ExtraDarkColor`}  style={{ left: '55%' }} >
                         <h1 className="text-4xl">Welcome Back!</h1>
                         <p className="mb-5 text-sm">Already have an account?</p>
                         <button 
@@ -238,6 +250,7 @@ const Auth = () => {
                     </div>
                 </div>
             </div>
+        
         </div>
     );
 };
