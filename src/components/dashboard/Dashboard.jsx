@@ -133,7 +133,7 @@ const Dashboard = () => {
       let mediaUrl = null;
       if (postMedia) {
         const mediaName = `post_${user.id}_${Date.now()}_${postMedia.name}`;
-        const storageRef = ref(storage, `postMedia/${mediaName}`);
+        const storageRef = ref(storage, `profileImages/${mediaName}`);
 
         await uploadBytes(storageRef, postMedia);
         mediaUrl = await getDownloadURL(storageRef);
