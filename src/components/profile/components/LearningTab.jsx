@@ -79,7 +79,7 @@ const LearningTab = () => {
         });
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch learning plans: ${response.status}`);
+          throw new Error(`Failed to fetch meal plans: ${response.status}`);
         }
 
         const data = await response.json();
@@ -93,8 +93,8 @@ const LearningTab = () => {
         }
       } catch (error) {
         if (isMounted) {
-          console.error('Error fetching learning plans:', error);
-          addToast('Failed to load learning plans. Please try again.', 'error');
+          console.error('Error fetching meal plans:', error);
+          addToast('Failed to load meal plans. Please try again.', 'error');
           setLearningPlans([]);
           setOtherLearningPlans([]);
         }
@@ -580,16 +580,19 @@ const LearningTab = () => {
           </div>
         ) : (
           <div>
-            {/* My Learning Plans Section */}
+            {/* My Meal Plans Section */}
             <div>
               <div className={styles.headerContainer}>
-                <h1 className={styles.headerTitle}>My Learning Plans</h1>
-                <button onClick={() => navigate('/learning-plans/create')} className={styles.createButton}>
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                  </svg>
-                  Create New Plan
-                </button>
+                <h1 className={styles.headerTitle}>My Meal Plans</h1>
+                <button 
+  onClick={() => navigate('/learning-plans/create')} 
+  className="flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-md transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+>
+  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+  </svg>
+  Create New Plan
+</button>
               </div>
 
               {isLoadingPlans ? (
@@ -601,10 +604,10 @@ const LearningTab = () => {
                   <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
-                  <p className={styles.emptyText}>No learning plans found. Create one to get started!</p>
+                  <p className={styles.emptyText}>No meal plans found. Create one to get started!</p>
                   <button
                     onClick={() => navigate('/learning-plans/create')}
-                    className="mt-4 px-5 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors duration-200 font-medium"
+                    className="mt-4 px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg shadow transition-colors duration-200 font-medium"
                   >
                     Create My First Plan
                   </button>
@@ -667,10 +670,10 @@ const LearningTab = () => {
               )}
             </div>
 
-            {/* Followed Learning Plans Section */}
+            {/* Followed Meal Plans Section */}
             <div className={styles.sectionDivider}></div>
             <div>
-              <h1 className={styles.sectionTitle}>Followed Learning Plans</h1>
+              <h1 className={styles.sectionTitle}>Followed Meal Plans</h1>
               {isLoadingOtherPlans ? (
                 <div className="flex justify-center items-center py-12">
                   <div className={styles.loadingPlanSpinner}></div>
@@ -680,10 +683,10 @@ const LearningTab = () => {
                   <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
-                  <p className={styles.emptyText}>No followed learning plans found.</p>
+                  <p className={styles.emptyText}>No followed meal plans found.</p>
                   <button
                     onClick={() => navigate('/learning-plans')}
-                    className="mt-4 px-5 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors duration-200 font-medium"
+                    className="mt-4 px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg shadow transition-colors duration-200 font-medium"
                   >
                     Discover Plans to Follow
                   </button>
@@ -704,7 +707,7 @@ const LearningTab = () => {
                       </div>
 
                       <p className={styles.description}>
-                        {plan.description || 'No description provided for this learning plan.'}
+                        {plan.description || 'No description provided for this meal plan.'}
                       </p>
 
                       <div className={styles.metaInfo}>

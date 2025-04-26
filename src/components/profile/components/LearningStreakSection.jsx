@@ -207,8 +207,8 @@ const LearningStreakSection = ({ user, refreshTrigger }) => {
           ) : (
             <div className="text-center text-gray-500 py-4 text-sm">
               <i className='bx bx-calendar-x text-3xl mb-2 text-gray-400'></i>
-              <p>No learning activity recorded yet</p>
-              <p className="text-xs mt-1">Start learning to build your streak!</p>
+              <p>No meal activity recorded yet</p>
+              <p className="text-xs mt-1">Start meal plan to build your streak!</p>
             </div>
           )}
         </div>
