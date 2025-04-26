@@ -7,13 +7,13 @@ const LearningTab = () => {
   return (
     <div className="text-center py-6">
       <p className="text-gray-500 mb-4">
-        Create a new learning plan to start your journey.
+        Create a new meal plan to start your journey.
       </p>
       <button
         onClick={() => navigate('/learning-plans/create')}
         className="px-4 py-2 bg-DarkColor text-white rounded-md hover:bg-ExtraDarkColor"
       >
-        Browse Learning Plans
+        Browse Meal Plans
       </button>
     </div>
   );
