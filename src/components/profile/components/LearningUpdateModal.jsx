@@ -79,7 +79,7 @@ const LearningUpdateModal = ({ isOpen, onClose, onSubmit, templates, isEditMode 
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center border-b border-gray-200 px-6 py-4">
           <h3 className="text-lg font-semibold">
-            {isEditMode ? 'Edit Learning Update' : (step === 1 ? 'Select Update Type' : 'Add Learning Update')}
+            {isEditMode ? 'Edit Planing Update' : (step === 1 ? 'Select Update Type' : 'Add Planing Update')}
           </h3>
           <button
             onClick={handleClose}
