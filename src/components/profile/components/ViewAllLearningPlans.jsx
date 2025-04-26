@@ -73,7 +73,8 @@ const ViewAllLearningPlans = () => {
         });
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch learning plans: ${response.status}`);
+          throw new Error(`Failed to fetch Meal
+             plans: ${response.status}`);
         }
 
         const data = await response.json();
@@ -89,8 +90,8 @@ const ViewAllLearningPlans = () => {
         }
       } catch (error) {
         if (isMounted) {
-          console.error('Error fetching learning plans:', error);
-          addToast('Failed to load learning plans. Please try again.', 'error');
+          console.error('Error fetching Meal plans:', error);
+          addToast('Failed to load Meal plans. Please try again.', 'error');
           setLearningPlans([]);
         }
       } finally {
@@ -237,23 +238,23 @@ const ViewAllLearningPlans = () => {
         }
         if (response.status === 400) {
           const errorData = await response.json();
-          addToast(errorData.error || 'Cannot follow this learning plan.', 'error');
+          addToast(errorData.error || 'Cannot follow this Meal plan.', 'error');
           return;
         }
         if (response.status === 404) {
-          addToast('Learning plan not found.', 'error');
+          addToast('Meal plan not found.', 'error');
           return;
         }
-        throw new Error(`Failed to follow learning plan: ${response.status}`);
+        throw new Error(`Failed to follow Meal plan: ${response.status}`);
       }
 
       // Update followed plans
       setFollowedPlanIds(prev => new Set([...prev, planId]));
-      addToast('Learning plan followed successfully! View it in your followed plans.', 'success');
+      addToast('Meal plan followed successfully! View it in your followed plans.', 'success');
       navigate('/profile');
     } catch (error) {
-      console.error('Error following learning plan:', error);
-      addToast(error.message || 'Failed to follow learning plan.', 'error');
+      console.error('Error following Meal plan:', error);
+      addToast(error.message || 'Failed to follow Meal plan.', 'error');
     }
   };
 
@@ -350,7 +351,7 @@ const ViewAllLearningPlans = () => {
 
               <div className="mb-4">
                 <h3 className={styles.sectionTitle}>About This Plan</h3>
-                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this learning plan.'}</p>
+                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this Meal plan.'}</p>
               </div>
 
               <div className={styles.divider}></div>
@@ -412,12 +413,12 @@ const ViewAllLearningPlans = () => {
             <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg>
-            <p className={styles.emptyText}>No learning plans found.</p>
+            <p className={styles.emptyText}>No Meal plans found.</p>
           </div>
         ) : (
           <div>
             <div className={styles.headerContainer}>
-              <h1 className={styles.headerTitle}>All Learning Plans</h1>
+              <h1 className={styles.headerTitle}>All Meal Plans</h1>
             </div>
 
             <div className={styles.planCardContainer}>
@@ -440,7 +441,7 @@ const ViewAllLearningPlans = () => {
                   </div>
 
                   <p className={styles.description}>
-                    {plan.description || 'No description provided for this learning plan.'}
+                    {plan.description || 'No description provided for this Meal plan.'}
                   </p>
 
                   <div className={styles.metaInfo}>

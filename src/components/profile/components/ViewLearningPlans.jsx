@@ -75,18 +75,18 @@ const ViewUserLearningPlans = () => {
         });
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch learning plans: ${response.status}`);
+          throw new Error(`Failed to fetch Meal plans: ${response.status}`);
         }
 
         const data = await response.json();
         if (isMounted) {
-          console.log('Fetched user learning plans:', data); // Debug the response
+          console.log('Fetched user Meal plans:', data); // Debug the response
           setLearningPlans(data);
         }
       } catch (error) {
         if (isMounted) {
-          console.error('Error fetching learning plans:', error);
-          addToast('Failed to load learning plans. Please try again.', 'error');
+          console.error('Error fetching Meal plans:', error);
+          addToast('Failed to load Meal plans. Please try again.', 'error');
           setLearningPlans([]);
         }
       } finally {
@@ -105,7 +105,7 @@ const ViewUserLearningPlans = () => {
   }, [currentUser?.id, addToast, navigate]);
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this learning plan?')) return;
+    if (!window.confirm('Are you sure you want to delete this Meal plan?')) return;
 
     try {
       const token = localStorage.getItem('token');
@@ -117,14 +117,14 @@ const ViewUserLearningPlans = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete learning plan');
+        throw new Error('Failed to delete Meal plan');
       }
 
       setLearningPlans(learningPlans.filter((plan) => plan.id !== id));
-      addToast('Learning plan deleted successfully!', 'success');
+      addToast('Meal plan deleted successfully!', 'success');
     } catch (error) {
-      console.error('Error deleting learning plan:', error);
-      addToast('Failed to delete learning plan. Please try again.', 'error');
+      console.error('Error deleting Meal plan:', error);
+      addToast('Failed to delete Meal plan. Please try again.', 'error');
     }
   };
 
@@ -145,7 +145,7 @@ const ViewUserLearningPlans = () => {
       <Navbar user={currentUser} />
       <div className="max-w-5xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-semibold text-gray-900">My Learning Plans</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">My Meal Plans</h1>
           {currentUser && (
             <button
               onClick={() => navigate('/learning-plans/create')}
@@ -162,7 +162,7 @@ const ViewUserLearningPlans = () => {
           </div>
         ) : learningPlans.length === 0 ? (
           <div className="text-center py-6">
-            <p className="text-gray-500">No learning plans found. Create one to get started!</p>
+            <p className="text-gray-500">No Meal plans found. Create one to get started!</p>
           </div>
         ) : (
           <div className="space-y-6">

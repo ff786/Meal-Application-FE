@@ -198,7 +198,7 @@ const LearningTab = () => {
   }, [otherLearningPlans, addToast, navigate]);
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this learning plan?')) return;
+    if (!window.confirm('Are you sure you want to delete this meal plan?')) return;
 
     try {
       const token = localStorage.getItem('token');
@@ -210,16 +210,16 @@ const LearningTab = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete learning plan');
+        throw new Error('Failed to delete meal plan');
       }
 
       setLearningPlans(learningPlans.filter((plan) => plan.id !== id));
       setOtherLearningPlans(otherLearningPlans.filter((plan) => plan.id !== id));
       setSelectedPlan(null); // Reset detailed view if deleted plan is selected
-      addToast('Learning plan deleted successfully!', 'success');
+      addToast('Meal plan deleted successfully!', 'success');
     } catch (error) {
-      console.error('Error deleting learning plan:', error);
-      addToast('Failed to delete learning plan. Please try again.', 'error');
+      console.error('Error deleting meal plan:', error);
+      addToast('Failed to delete meal plan. Please try again.', 'error');
     }
   };
 
@@ -255,17 +255,17 @@ const LearningTab = () => {
         }
         if (response.status === 400) {
           const errorData = await response.json();
-          addToast(errorData.error || 'Cannot follow this learning plan.', 'error');
+          addToast(errorData.error || 'Cannot follow this meal plan.', 'error');
           return;
         }
         if (response.status === 404) {
-          addToast('Learning plan not found.', 'error');
+          addToast('Meal plan not found.', 'error');
           return;
         }
-        throw new Error(`Failed to follow learning plan: ${response.status}`);
+        throw new Error(`Failed to follow meal plan: ${response.status}`);
       }
 
-      addToast('Learning plan followed successfully!', 'success');
+      addToast('Meal plan followed successfully!', 'success');
       // Refresh followed plans
       const userPlansResponse = await fetch(`${API_BASE_URL}/learning-plan/user/${currentUser.id}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -275,8 +275,8 @@ const LearningTab = () => {
         setOtherLearningPlans(updatedPlans.filter((plan) => plan.sourcePlanId));
       }
     } catch (error) {
-      console.error('Error following learning plan:', error);
-      addToast(error.message || 'Failed to follow learning plan.', 'error');
+      console.error('Error following meal plan:', error);
+      addToast(error.message || 'Failed to follow meal plan.', 'error');
     }
   };
 
