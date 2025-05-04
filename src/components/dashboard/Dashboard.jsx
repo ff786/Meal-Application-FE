@@ -9,6 +9,7 @@ import { useToast } from '../common/Toast';
 import SharePostModal from '../common/SharePostModal';
 import CommentSection from '../common/CommentSection';
 import ConfirmDialog from '../common/ConfirmDialog';
+import EditPostModal from '../common/EditPostModal';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,6 +34,10 @@ const Dashboard = () => {
   // Add state for confirm dialog
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
+
+    // Add state for edit modal
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [postToEdit, setPostToEdit] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -237,6 +242,12 @@ const Dashboard = () => {
   const handleOpenShareModal = (post) => {
     setPostToShare(post);
     setShowShareModal(true);
+  };
+
+  // Add handleEditPost function
+  const handleEditPost = (post) => {
+    setPostToEdit(post);
+    setShowEditModal(true);
   };
 
   // Add this handler to update posts when comments are added
@@ -464,13 +475,24 @@ const Dashboard = () => {
                   {/* Add post delete option - only shown for post author */}
                   {user && post.authorId === user.id && (
                     <div className="relative group">
-                      <button 
-                        className="text-gray-400 hover:text-red-500 p-1 rounded-full hover:bg-gray-100"
-                        onClick={() => handleDeletePost(post.id)}
-                        title="Delete post"
-                      >
-                        <i className='bx bx-trash'></i>
-                      </button>
+                      <div className="flex space-x-2">
+                        {!post.originalPostId && (
+                          <button 
+                            className="text-gray-400 hover:text-blue-500 p-1 rounded-full hover:bg-gray-100"
+                            onClick={() => handleEditPost(post)}
+                            title="Edit post"
+                          >
+                            <i className='bx bx-edit'></i>
+                          </button>
+                        )}
+                        <button 
+                          className="text-gray-400 hover:text-red-500 p-1 rounded-full hover:bg-gray-100"
+                          onClick={() => handleDeletePost(post.id)}
+                          title="Delete post"
+                        >
+                          <i className='bx bx-trash'></i>
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -487,6 +509,7 @@ const Dashboard = () => {
                 
                 <div className="mb-3">
                   <p className="text-gray-800 whitespace-pre-line">{post.content}</p>
+                  {post.edited && <span className="text-xs italic text-gray-500">(edited)</span>}
                 </div>
                 
                 {post.mediaUrl && (
@@ -570,6 +593,15 @@ const Dashboard = () => {
         confirmText="Delete"
         cancelText="Cancel"
       />
+
+       {/* Add EditPostModal */}
+       <EditPostModal
+         isOpen={showEditModal}
+         onClose={() => setShowEditModal(false)}
+         post={postToEdit}
+         currentUser={user}
+         onPostUpdated={handlePostUpdated}
+       />
     </div>
   );
 };
