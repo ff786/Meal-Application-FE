@@ -325,8 +325,8 @@ const CreateLearningPlan = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-blue-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-indigo-600"></div>
+      <div className="flex justify-center items-center min-h-screen bg-orange-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-orange-600"></div>
       </div>
     );
   }
@@ -334,14 +334,14 @@ const CreateLearningPlan = () => {
   const hasErrors = Object.keys(errors).length > 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       <Navbar user={currentUser} />
       <div className="max-w-4xl mx-auto pt-8 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Create a New Meal Plan</h1>
           <button
             onClick={() => navigate('/profile')}
-            className="flex items-center text-indigo-600 hover:text-indigo-800 font-medium text-sm transition-colors duration-200"
+            className="flex items-center text-orange-600 hover:text-orange-800 font-medium text-sm transition-colors duration-200"
           >
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
@@ -362,7 +362,7 @@ const CreateLearningPlan = () => {
               value={formData.title}
               onChange={(e) => handleInputChange(e)}
               onBlur={() => handleBlur(null, null, 'title')}
-              className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+              className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                 (touched.title || hasAttemptedSubmit) && errors.title ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="Enter plan title"
@@ -383,7 +383,7 @@ const CreateLearningPlan = () => {
               value={formData.description}
               onChange={(e) => handleInputChange(e)}
               onBlur={() => handleBlur(null, null, 'description')}
-              className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+              className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                 (touched.description || hasAttemptedSubmit) && errors.description ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="What do you want to achieve with this meal plan?"
@@ -413,7 +413,7 @@ const CreateLearningPlan = () => {
         value={formData.age}
         onChange={(e) => handleInputChange(e)}
         onBlur={() => handleBlur('age')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
           (touched.age || hasAttemptedSubmit) && errors.age ? 'border-red-500' : 'border-gray-300'
         }`}
         placeholder="Your age"
@@ -435,7 +435,7 @@ const CreateLearningPlan = () => {
         value={formData.gender}
         onChange={(e) => handleInputChange(e)}
         onBlur={() => handleBlur('gender')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
           (touched.gender || hasAttemptedSubmit) && errors.gender ? 'border-red-500' : 'border-gray-300'
         }`}
         required
@@ -465,7 +465,7 @@ const CreateLearningPlan = () => {
         value={formData.height}
         onChange={(e) => handleInputChange(e)}
         onBlur={() => handleBlur('height')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
           (touched.height || hasAttemptedSubmit) && errors.height ? 'border-red-500' : 'border-gray-300'
         }`}
         placeholder="Your height in cm"
@@ -491,7 +491,7 @@ const CreateLearningPlan = () => {
         value={formData.weight}
         onChange={(e) => handleInputChange(e)}
         onBlur={() => handleBlur('weight')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
           (touched.weight || hasAttemptedSubmit) && errors.weight ? 'border-red-500' : 'border-gray-300'
         }`}
         placeholder="Your weight in kg"
@@ -510,7 +510,7 @@ const CreateLearningPlan = () => {
               <button
                 type="button"
                 onClick={addResource}
-                className="flex items-center px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-md hover:bg-indigo-200 transition-colors duration-200 text-sm font-medium"
+                className="flex items-center px-3 py-1.5 bg-orange-100 text-orange-700 rounded-md hover:bg-orange-200 transition-colors duration-200 text-sm font-medium"
               >
                 <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -548,7 +548,7 @@ const CreateLearningPlan = () => {
                         value={resource.title}
                         onChange={(e) => handleInputChange(e, 'resources', index, 'title')}
                         onBlur={() => handleBlur('resources', index, 'title')}
-                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                           (touched[`resourcesTitle${index}`] || hasAttemptedSubmit) && errors[`resourceTitle${index}`]
                             ? 'border-red-500'
                             : 'border-gray-300'
@@ -567,7 +567,7 @@ const CreateLearningPlan = () => {
                         value={resource.type}
                         onChange={(e) => handleInputChange(e, 'resources', index, 'type')}
                         onBlur={() => handleBlur('resources', index, 'type')}
-                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                           (touched[`resourcesType${index}`] || hasAttemptedSubmit) && errors[`resourceType${index}`]
                             ? 'border-red-500'
                             : 'border-gray-300'
@@ -596,7 +596,7 @@ const CreateLearningPlan = () => {
                       value={resource.url}
                       onChange={(e) => handleInputChange(e, 'resources', index, 'url')}
                       onBlur={() => handleBlur('resources', index, 'url')}
-                      className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+                      className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                         (touched[`resourcesUrl${index}`] || hasAttemptedSubmit) && errors[`resourceUrl${index}`]
                           ? 'border-red-500'
                           : 'border-gray-300'
@@ -619,7 +619,7 @@ const CreateLearningPlan = () => {
               <button
                 type="button"
                 onClick={addWeek}
-                className="flex items-center px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-md hover:bg-indigo-200 transition-colors duration-200 text-sm font-medium"
+                className="flex items-center px-3 py-1.5 bg-orange-100 text-orange-700 rounded-md hover:bg-orange-200 transition-colors duration-200 text-sm font-medium"
               >
                 <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -657,7 +657,7 @@ const CreateLearningPlan = () => {
                         value={week.title}
                         onChange={(e) => handleInputChange(e, 'weeks', index, 'title')}
                         onBlur={() => handleBlur('weeks', index, 'title')}
-                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                           (touched[`weeksTitle${index}`] || hasAttemptedSubmit) && errors[`weekTitle${index}`]
                             ? 'border-red-500'
                             : 'border-gray-300'
@@ -676,7 +676,7 @@ const CreateLearningPlan = () => {
                         value={week.status}
                         onChange={(e) => handleInputChange(e, 'weeks', index, 'status')}
                         onBlur={() => handleBlur('weeks', index, 'status')}
-                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+                        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                           (touched[`weeksStatus${index}`] || hasAttemptedSubmit) && errors[`weekStatus${index}`]
                             ? 'border-red-500'
                             : 'border-gray-300'
@@ -699,7 +699,7 @@ const CreateLearningPlan = () => {
                       value={week.description}
                       onChange={(e) => handleInputChange(e, 'weeks', index, 'description')}
                       onBlur={() => handleBlur('weeks', index, 'description')}
-                      className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ${
+                      className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
                         (touched[`weeksDescription${index}`] || hasAttemptedSubmit) && errors[`weekDescription${index}`]
                           ? 'border-red-500'
                           : 'border-gray-300'
@@ -730,7 +730,7 @@ const CreateLearningPlan = () => {
               className={`px-5 py-2 rounded-lg text-white font-medium flex items-center ${
                 isSubmitting || (hasAttemptedSubmit && hasErrors)
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200'
+                  : 'bg-orange-600 hover:bg-orange-700 transition-colors duration-200'
               }`}
             >
               {isSubmitting ? (
