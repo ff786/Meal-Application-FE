@@ -36,14 +36,14 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch learning updates');
+        throw new Error('Failed to fetch planing updates');
       }
 
       const data = await response.json();
       setLearningUpdates(data);
     } catch (error) {
-      console.error('Error fetching learning updates:', error);
-      addToast('Failed to load learning updates', 'error');
+      console.error('Error fetching planing updates:', error);
+      addToast('Failed to load planing updates', 'error');
     } finally {
       setIsLoading(false);
     }
@@ -84,7 +84,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
         });
 
         if (!response.ok) {
-          throw new Error('Failed to update learning progress');
+          throw new Error('Failed to update planing progress');
         }
 
         const data = await response.json();
@@ -97,7 +97,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
           onUserUpdated(data.user);
         }
         
-        addToast('Learning update edited successfully!', 'success');
+        addToast('Plan update edited successfully!', 'success');
       } else {
         const response = await fetch(`${API_BASE_URL}/learning/updates`, {
           method: 'POST',
@@ -109,7 +109,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
         });
 
         if (!response.ok) {
-          throw new Error('Failed to add learning update');
+          throw new Error('Failed to add planing update');
         }
 
         const data = await response.json();
@@ -119,10 +119,10 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
           onUserUpdated(data.user);
         }
         
-        addToast('Learning update added successfully!', 'success');
+        addToast('Planing update added successfully!', 'success');
       }
     } catch (error) {
-      console.error('Error updating learning progress:', error);
+      console.error('Error updating planing progress:', error);
       addToast(`Failed to ${isEditMode ? 'update' : 'add'} learning update`, 'error');
     } finally {
       setShowLearningModal(false);
@@ -159,14 +159,14 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete learning update');
+        throw new Error('Failed to delete planing update');
       }
 
       setLearningUpdates(prev => prev.filter(update => update.id !== updateToDelete));
-      addToast('Learning update deleted successfully', 'success');
+      addToast('Planing update deleted successfully', 'success');
     } catch (error) {
-      console.error('Error deleting learning update:', error);
-      addToast('Failed to delete learning update', 'error');
+      console.error('Error deleting planing update:', error);
+      addToast('Failed to delete planing update', 'error');
     } finally {
       setShowDeleteConfirm(false);
       setUpdateToDelete(null);
@@ -296,7 +296,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
         </div>
       </div>
 
-      {/* Learning Progress Section */}
+      {/* planing Progress Section */}
       <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Meal Journey</h2>
@@ -384,8 +384,8 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
             </div>
             <p className="mt-2 text-gray-600">
               {isCurrentUserProfile 
-                ? "You haven't tracked any learning progress yet." 
-                : "This user hasn't shared any learning progress yet."}
+                ? "You haven't tracked any planing progress yet." 
+                : "This user hasn't shared any planing progress yet."}
             </p>
             {isCurrentUserProfile && (
               <button
@@ -442,8 +442,8 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
         isOpen={showDeleteConfirm}
         onClose={() => setShowDeleteConfirm(false)}
         onConfirm={confirmDeleteLearningUpdate}
-        title="Delete Learning Update"
-        message="Are you sure you want to delete this learning update? This action cannot be undone."
+        title="Delete Meal Planing Update"
+        message="Are you sure you want to delete this meal planing update? This action cannot be undone."
         confirmText="Delete"
         cancelText="Cancel"
       />
