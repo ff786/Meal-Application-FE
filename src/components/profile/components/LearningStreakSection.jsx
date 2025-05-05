@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../../../config/apiConfig';
 
-// Add refreshTrigger prop to cause component to refresh when learning updates change
+// Add refreshTrigger prop to cause component to refresh when meal plan updates change
 const LearningStreakSection = ({ user, refreshTrigger }) => {
   const [streakData, setStreakData] = useState({
     currentStreak: 0,

@@ -60,7 +60,7 @@ const OtherLearningPlans = () => {
     };
   }, [navigate, addToast]);
 
-  // Fetch followed learning plans
+  // Fetch followed meal plans
   useEffect(() => {
     if (!currentUser?.id) return;
 
@@ -77,7 +77,7 @@ const OtherLearningPlans = () => {
         });
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch learning plans: ${response.status}`);
+          throw new Error(`Failed to fetch meal plans: ${response.status}`);
         }
 
         const data = await response.json();
@@ -204,15 +204,15 @@ const OtherLearningPlans = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete learning plan');
+        throw new Error('Failed to delete meal plan');
       }
 
       setFollowedPlans(followedPlans.filter((plan) => plan.id !== id));
       setSelectedPlan(null); // Reset detailed view if deleted plan is selected
-      addToast('Learning plan unfollowed successfully!', 'success');
+      addToast('Meal plan unfollowed successfully!', 'success');
     } catch (error) {
-      console.error('Error deleting learning plan:', error);
-      addToast('Failed to unfollow learning plan. Please try again.', 'error');
+      console.error('Error deleting meal plan:', error);
+      addToast('Failed to unfollow meal plan. Please try again.', 'error');
     }
   };
 
@@ -373,14 +373,14 @@ const OtherLearningPlans = () => {
 
               <div className="mb-4">
                 <h3 className={styles.sectionTitle}>About This Plan</h3>
-                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this learning plan.'}</p>
+                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this meal plan.'}</p>
               </div>
 
               <div className={styles.divider}></div>
 
               {selectedPlan.resources && Array.isArray(selectedPlan.resources) && selectedPlan.resources.length > 0 && (
                 <div className="mb-6">
-                  <h3 className={styles.sectionTitle}>Learning Resources</h3>
+                  <h3 className={styles.sectionTitle}>Meal Plan Resources</h3>
                   <ul className={styles.resourceList}>
                     {selectedPlan.resources.map((resource, index) => (
                       <li key={index} className={styles.resourceItem}>
@@ -472,7 +472,7 @@ const OtherLearningPlans = () => {
             <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg>
-            <p className={styles.emptyText}>No followed learning plans found.</p>
+            <p className={styles.emptyText}>No followed meal plans found.</p>
             <button
               onClick={() => navigate('/learning-plans/all')}
               className="mt-4 px-5 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors duration-200 font-medium"
@@ -483,7 +483,7 @@ const OtherLearningPlans = () => {
         ) : (
           <div>
             <div className={styles.headerContainer}>
-              <h1 className={styles.headerTitle}>Followed Learning Plans</h1>
+              <h1 className={styles.headerTitle}>Followed Meal Plans</h1>
             </div>
 
             <div className={styles.planCardContainer}>
@@ -501,7 +501,7 @@ const OtherLearningPlans = () => {
                   </div>
 
                   <p className={styles.description}>
-                    {plan.description || 'No description provided for this learning plan.'}
+                    {plan.description || 'No description provided for this meal plan.'}
                   </p>
 
                   <div className={styles.metaInfo}>

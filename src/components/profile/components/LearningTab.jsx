@@ -486,14 +486,14 @@ const LearningTab = () => {
 
               <div className="mb-4">
                 <h3 className={styles.sectionTitleInner}>About This Plan</h3>
-                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this learning plan.'}</p>
+                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this meal plan.'}</p>
               </div>
 
               <div className={styles.divider}></div>
 
               {selectedPlan.resources && Array.isArray(selectedPlan.resources) && selectedPlan.resources.length > 0 && (
                 <div className="mb-6">
-                  <h3 className={styles.sectionTitleInner}>Learning Resources</h3>
+                  <h3 className={styles.sectionTitleInner}>Meal Plan Resources</h3>
                   <ul className={styles.resourceList}>
                     {selectedPlan.resources.map((resource, index) => (
                       <li key={index} className={styles.resourceItem}>
@@ -631,7 +631,7 @@ const LearningTab = () => {
                       </div>
 
                       <p className={styles.description}>
-                        {plan.description || 'No description provided for this learning plan.'}
+                        {plan.description || 'No description provided for this meal plan.'}
                       </p>
 
                       {Array.isArray(plan.weeks) && plan.weeks.length > 0 && (
