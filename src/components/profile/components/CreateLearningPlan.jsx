@@ -21,8 +21,8 @@ const CreateLearningPlan = () => {
     weeks: [{ title: '', description: '', status: 'Not Started' }],
   });
   const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({}); // Track which fields have been interacted with
-  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false); // Track if user has tried to submit
+  const [touched, setTouched] = useState({});
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
 
   const resourceTypes = ['Video', 'Documentation', 'Article', 'Tutorial', 'Book'];
 
@@ -66,7 +66,6 @@ const CreateLearningPlan = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Title validation
     if (!formData.title.trim()) {
       newErrors.title = 'Title is required';
     } else if (formData.title.length < 3) {
@@ -75,7 +74,6 @@ const CreateLearningPlan = () => {
       newErrors.title = 'Title cannot exceed 255 characters';
     }
 
-    // Description validation (optional, but if provided, must meet criteria)
     if (formData.description) {
       if (formData.description.length < 10) {
         newErrors.description = 'Description must be at least 10 characters long if provided';
@@ -84,12 +82,10 @@ const CreateLearningPlan = () => {
       }
     }
 
-    // Resources validation
     if (formData.resources.length === 0) {
       newErrors.resources = 'At least one resource is required';
     } else {
       formData.resources.forEach((resource, index) => {
-        // Resource Title
         if (!resource.title.trim()) {
           newErrors[`resourceTitle${index}`] = 'Resource title is required';
         } else if (resource.title.length < 3) {
@@ -98,7 +94,6 @@ const CreateLearningPlan = () => {
           newErrors[`resourceTitle${index}`] = 'Resource title cannot exceed 100 characters';
         }
 
-        // Resource URL
         if (!resource.url.trim()) {
           newErrors[`resourceUrl${index}`] = 'Resource URL is required';
         } else if (!/^https?:\/\/[^\s$.?#].[^\s]*$/.test(resource.url)) {
@@ -107,7 +102,6 @@ const CreateLearningPlan = () => {
           newErrors[`resourceUrl${index}`] = 'URL cannot exceed 2048 characters';
         }
 
-        // Resource Type
         if (!resource.type) {
           newErrors[`resourceType${index}`] = 'Resource type is required';
         } else if (!resourceTypes.includes(resource.type)) {
@@ -116,12 +110,10 @@ const CreateLearningPlan = () => {
       });
     }
 
-    // Weeks validation
     if (formData.weeks.length === 0) {
       newErrors.weeks = 'At least one week is required';
     } else {
       formData.weeks.forEach((week, index) => {
-        // Week Title
         if (!week.title.trim()) {
           newErrors[`weekTitle${index}`] = 'Week title is required';
         } else if (week.title.length < 3) {
@@ -130,7 +122,6 @@ const CreateLearningPlan = () => {
           newErrors[`weekTitle${index}`] = 'Week title cannot exceed 100 characters';
         }
 
-        // Week Description (optional, but if provided, must meet criteria)
         if (week.description) {
           if (week.description.length < 10) {
             newErrors[`weekDescription${index}`] = 'Week description must be at least 10 characters long if provided';
@@ -139,7 +130,6 @@ const CreateLearningPlan = () => {
           }
         }
 
-        // Week Status
         if (!week.status) {
           newErrors[`weekStatus${index}`] = 'Week status is required';
         } else if (!['Not Started', 'In Progress', 'Completed'].includes(week.status)) {
@@ -156,7 +146,6 @@ const CreateLearningPlan = () => {
     const { value } = e.target;
     const fieldKey = section ? `${section}${field}${index}` : e.target.name;
 
-    // Update form data
     if (section) {
       const updatedSection = [...formData[section]];
       updatedSection[index] = { ...updatedSection[index], [field]: value };
@@ -165,10 +154,7 @@ const CreateLearningPlan = () => {
       setFormData({ ...formData, [e.target.name]: value });
     }
 
-    // Mark field as touched
     setTouched((prev) => ({ ...prev, [fieldKey]: true }));
-
-    // Clear error for this field and revalidate
     setErrors((prev) => ({ ...prev, [fieldKey]: '' }));
     validateForm();
   };
@@ -272,12 +258,10 @@ const CreateLearningPlan = () => {
         body: JSON.stringify({
           title: formData.title,
           description: formData.description,
-
           age: formData.age,
           weight: formData.weight,
           height: formData.height,
           gender: formData.gender,
-
           resources: formData.resources,
           weeks: formData.weeks,
         }),
@@ -349,7 +333,7 @@ const CreateLearningPlan = () => {
             Back to Plans
           </button>
         </div>
-{/* form submitting */}
+
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
           <div className="mb-6">
             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
@@ -394,115 +378,109 @@ const CreateLearningPlan = () => {
             )}
           </div>
 
-         {/* Personal Details */}
-<div className="border border-gray-200 rounded-lg p-6 mb-6">
-  <h2 className="text-lg font-semibold text-gray-800 mb-4">Personal Details</h2>
-  
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {/* Age */}
-    <div className="mb-4">
-      <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
-        Age
-      </label>
-      <input
-        type="number"
-        id="age"
-        name="age"
-        min="1"
-        max="120"
-        value={formData.age}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('age')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.age || hasAttemptedSubmit) && errors.age ? 'border-red-500' : 'border-gray-300'
-        }`}
-        placeholder="Your age"
-        required
-      />
-      {(touched.age || hasAttemptedSubmit) && errors.age && (
-        <p className="mt-1 text-sm text-red-600">{errors.age}</p>
-      )}
-    </div>
+          <div className="border border-gray-200 rounded-lg p-6 mb-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Personal Details</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="mb-4">
+                <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
+                  Age
+                </label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  min="1"
+                  max="120"
+                  value={formData.age}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('age')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.age || hasAttemptedSubmit) && errors.age ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder="Your age"
+                  required
+                />
+                {(touched.age || hasAttemptedSubmit) && errors.age && (
+                  <p className="mt-1 text-sm text-red-600">{errors.age}</p>
+                )}
+              </div>
 
-    {/* Gender */}
-    <div className="mb-4">
-      <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
-        Gender
-      </label>
-      <select
-        id="gender"
-        name="gender"
-        value={formData.gender}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('gender')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.gender || hasAttemptedSubmit) && errors.gender ? 'border-red-500' : 'border-gray-300'
-        }`}
-        required
-      >
-        <option value="">Select gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-        <option value="prefer-not-to-say">Prefer not to say</option>
-      </select>
-      {(touched.gender || hasAttemptedSubmit) && errors.gender && (
-        <p className="mt-1 text-sm text-red-600">{errors.gender}</p>
-      )}
-    </div>
+              <div className="mb-4">
+                <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={formData.gender}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('gender')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.gender || hasAttemptedSubmit) && errors.gender ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  required
+                >
+                  <option value="">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                  <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+                {(touched.gender || hasAttemptedSubmit) && errors.gender && (
+                  <p className="mt-1 text-sm text-red-600">{errors.gender}</p>
+                )}
+              </div>
 
-    {/* Height */}
-    <div className="mb-4">
-      <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
-        Height (cm)
-      </label>
-      <input
-        type="number"
-        id="height"
-        name="height"
-        min="100"
-        max="250"
-        value={formData.height}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('height')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.height || hasAttemptedSubmit) && errors.height ? 'border-red-500' : 'border-gray-300'
-        }`}
-        placeholder="Your height in cm"
-        required
-      />
-      {(touched.height || hasAttemptedSubmit) && errors.height && (
-        <p className="mt-1 text-sm text-red-600">{errors.height}</p>
-      )}
-    </div>
+              <div className="mb-4">
+                <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
+                  Height (cm)
+                </label>
+                <input
+                  type="number"
+                  id="height"
+                  name="height"
+                  min="100"
+                  max="250"
+                  value={formData.height}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('height')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.height || hasAttemptedSubmit) && errors.height ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder="Your height in cm"
+                  required
+                />
+                {(touched.height || hasAttemptedSubmit) && errors.height && (
+                  <p className="mt-1 text-sm text-red-600">{errors.height}</p>
+                )}
+              </div>
 
-    {/* Weight */}
-    <div className="mb-4">
-      <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-1">
-        Weight (kg)
-      </label>
-      <input
-        type="number"
-        id="weight"
-        name="weight"
-        min="20"
-        max="300"
-        step="0.1"
-        value={formData.weight}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('weight')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.weight || hasAttemptedSubmit) && errors.weight ? 'border-red-500' : 'border-gray-300'
-        }`}
-        placeholder="Your weight in kg"
-        required
-      />
-      {(touched.weight || hasAttemptedSubmit) && errors.weight && (
-        <p className="mt-1 text-sm text-red-600">{errors.weight}</p>
-      )}
-    </div>
-  </div>
-</div>
+              <div className="mb-4">
+                <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-1">
+                  Weight (kg)
+                </label>
+                <input
+                  type="number"
+                  id="weight"
+                  name="weight"
+                  min="20"
+                  max="300"
+                  step="0.1"
+                  value={formData.weight}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('weight')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.weight || hasAttemptedSubmit) && errors.weight ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder="Your weight in kg"
+                  required
+                />
+                {(touched.weight || hasAttemptedSubmit) && errors.weight && (
+                  <p className="mt-1 text-sm text-red-600">{errors.weight}</p>
+                )}
+              </div>
+            </div>
+          </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-4">
@@ -604,6 +582,18 @@ const CreateLearningPlan = () => {
                       placeholder="https://example.com"
                       required
                     />
+                    {resource.url && !errors[`resourceUrl${index}`] && (
+                      <div className="mt-1">
+                        <a 
+                          href={resource.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-orange-600 hover:text-orange-800 text-sm break-all"
+                        >
+                          {resource.url.length > 50 ? `${resource.url.substring(0, 50)}...` : resource.url}
+                        </a>
+                      </div>
+                    )}
                     {(touched[`resourcesUrl${index}`] || hasAttemptedSubmit) && errors[`resourceUrl${index}`] && (
                       <p className="mt-1 text-sm text-red-600">{errors[`resourceUrl${index}`]}</p>
                     )}
