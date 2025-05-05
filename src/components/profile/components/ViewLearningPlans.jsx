@@ -58,7 +58,7 @@ const ViewUserLearningPlans = () => {
     };
   }, [navigate, addToast]);
 
-  // Fetch learning plans when currentUser.id is available
+  // Fetch meal plans when currentUser.id is available
   useEffect(() => {
     if (!currentUser?.id) return;
 
@@ -68,7 +68,7 @@ const ViewUserLearningPlans = () => {
       setIsLoadingPlans(true);
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${API_BASE_URL}/learning-plan/user/${currentUser.id}`, {
+        const response = await fetch(`${API_BASE_URL}/meal-plan/user/${currentUser.id}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -109,7 +109,7 @@ const ViewUserLearningPlans = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning-plan/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/meal-plan/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -129,7 +129,7 @@ const ViewUserLearningPlans = () => {
   };
 
   const handleEdit = (id) => {
-    navigate(`/learning-plans/edit/${id}`);
+    navigate(`/meal-plans/edit/${id}`);
   };
 
   if (isLoading) {
@@ -148,7 +148,7 @@ const ViewUserLearningPlans = () => {
           <h1 className="text-2xl font-semibold text-gray-900">My Meal Plans</h1>
           {currentUser && (
             <button
-              onClick={() => navigate('/learning-plans/create')}
+              onClick={() => navigate('/meal-plans/create')}
               className="px-4 py-2 bg-DarkColor text-white rounded-md hover:bg-ExtraDarkColor"
             >
               Create New Plan

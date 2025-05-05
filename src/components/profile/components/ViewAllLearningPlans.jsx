@@ -60,7 +60,7 @@ const ViewAllLearningPlans = () => {
     };
   }, [navigate, addToast]);
 
-  // Fetch all learning plans
+  // Fetch all meal plans
   useEffect(() => {
     let isMounted = true;
 
@@ -68,7 +68,7 @@ const ViewAllLearningPlans = () => {
       setIsLoadingPlans(true);
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${API_BASE_URL}/learning-plan`, {
+        const response = await fetch(`${API_BASE_URL}/meal-plan`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -118,7 +118,7 @@ const ViewAllLearningPlans = () => {
     const fetchFollowedPlans = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${API_BASE_URL}/learning-plan/user/${currentUser.id}`, {
+        const response = await fetch(`${API_BASE_URL}/meal-plan/user/${currentUser.id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -221,7 +221,7 @@ const ViewAllLearningPlans = () => {
   const handleFollowPlan = async (planId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning-plan/follow/${planId}`, {
+      const response = await fetch(`${API_BASE_URL}/meal-plan/follow/${planId}`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -358,7 +358,7 @@ const ViewAllLearningPlans = () => {
 
               {selectedPlan.resources && Array.isArray(selectedPlan.resources) && selectedPlan.resources.length > 0 && (
                 <div className="mb-6">
-                  <h3 className={styles.sectionTitle}>Learning Resources</h3>
+                  <h3 className={styles.sectionTitle}>Meal Plan Resources</h3>
                   <ul className={styles.resourceList}>
                     {selectedPlan.resources.map((resource, index) => (
                       <li key={index} className={styles.resourceItem}>

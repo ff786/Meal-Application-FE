@@ -263,7 +263,7 @@ const CreateLearningPlan = () => {
     setIsSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning-plan`, {
+      const response = await fetch(`${API_BASE_URL}/meal-plan`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

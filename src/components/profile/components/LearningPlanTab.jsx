@@ -10,7 +10,7 @@ const LearningTab = () => {
         Create a new meal plan to start your journey.
       </p>
       <button
-        onClick={() => navigate('/learning-plans/create')}
+        onClick={() => navigate('/meal-plans/create')}
         className="px-4 py-2 bg-DarkColor text-white rounded-md hover:bg-ExtraDarkColor"
       >
         Browse Meal Plans

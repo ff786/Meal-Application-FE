@@ -58,7 +58,7 @@ const EditLearningPlan = () => {
 
     const fetchLearningPlan = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/learning-plan/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/meal-plan/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -84,7 +84,7 @@ const EditLearningPlan = () => {
       } catch (error) {
         console.error('Error fetching meal plan:', error);
         addToast('Failed to load meal plan.', 'error');
-        navigate('/learning-plans/my-plans');
+        navigate('/meal-plans/my-plans');
       }
     };
 
@@ -291,7 +291,7 @@ const EditLearningPlan = () => {
     setIsSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning-plan/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/meal-plan/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -330,7 +330,7 @@ const EditLearningPlan = () => {
 
   const handleCancel = () => {
     if (window.confirm('Are you sure you want to discard changes?')) {
-      navigate('/learning-plans/my-plans');
+      navigate('/meal-plans/my-plans');
     }
   };
 
@@ -351,7 +351,7 @@ const EditLearningPlan = () => {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Edit meal Plan</h1>
           <button
-            onClick={() => navigate('/learning-plans/my-plans')}
+            onClick={() => navigate('/meal-plans/my-plans')}
             className="flex items-center text-orange-600 hover:text-orange-800 font-medium text-sm transition-colors duration-200"
           >
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

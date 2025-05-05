@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../../../config/apiConfig';
 
-// Add refreshTrigger prop to cause component to refresh when learning updates change
+// Add refreshTrigger prop to cause component to refresh when plaing updates change
 const LearningStreakSection = ({ user, refreshTrigger }) => {
   const [streakData, setStreakData] = useState({
     currentStreak: 0,
@@ -21,7 +21,7 @@ const LearningStreakSection = ({ user, refreshTrigger }) => {
   const fetchStreakData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning/streak/${user.id}`, {
+      const response = await fetch(`${API_BASE_URL}/planing/streak/${user.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -175,7 +175,7 @@ const LearningStreakSection = ({ user, refreshTrigger }) => {
                           count > 1 ? 'bg-green-500 hover:bg-green-600' : 
                           'bg-green-400 hover:bg-green-500'
                         }`}
-                        title={`${formattedDate}: ${count} learning ${count === 1 ? 'update' : 'updates'}`}
+                        title={`${formattedDate}: ${count} planing ${count === 1 ? 'update' : 'updates'}`}
                       >
                         {count > 1 && (
                           <span className="text-[10px] text-white font-bold">{count}</span>

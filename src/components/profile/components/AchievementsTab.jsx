@@ -29,7 +29,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
   const fetchLearningUpdates = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning/updates/user/${user.id}`, {
+      const response = await fetch(`${API_BASE_URL}/planing/updates/user/${user.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -52,7 +52,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
   const fetchTemplates = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning/templates`, {
+      const response = await fetch(`${API_BASE_URL}/planing/templates`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -74,7 +74,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
       const token = localStorage.getItem('token');
       
       if (isEditMode && updateToEdit) {
-        const response = await fetch(`${API_BASE_URL}/learning/updates/${updateToEdit.id}`, {
+        const response = await fetch(`${API_BASE_URL}/planing/updates/${updateToEdit.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
         
         addToast('Plan update edited successfully!', 'success');
       } else {
-        const response = await fetch(`${API_BASE_URL}/learning/updates`, {
+        const response = await fetch(`${API_BASE_URL}/planing/updates`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
       }
     } catch (error) {
       console.error('Error updating planing progress:', error);
-      addToast(`Failed to ${isEditMode ? 'update' : 'add'} learning update`, 'error');
+      addToast(`Failed to ${isEditMode ? 'update' : 'add'} planing update`, 'error');
     } finally {
       setShowLearningModal(false);
       setIsEditMode(false);
@@ -151,7 +151,7 @@ const AchievementsTab = ({ user, currentUser, onUserUpdated }) => {
   const confirmDeleteLearningUpdate = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning/updates/${updateToDelete}`, {
+      const response = await fetch(`${API_BASE_URL}/planing/updates/${updateToDelete}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

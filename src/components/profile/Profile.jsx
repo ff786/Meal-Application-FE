@@ -620,9 +620,9 @@ const Profile = () => {
                   Posts
                 </button>
                 <button
-                  onClick={() => setActiveTab('learning')}
+                  onClick={() => setActiveTab('planing')}
                   className={`py-4 px-6 text-center border-b-2 font-medium text-sm flex items-center ${
-                    activeTab === 'learning'
+                    activeTab === 'planing'
                       ? 'border-DarkColor text-DarkColor'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
@@ -663,7 +663,7 @@ const Profile = () => {
                 />
               )}
 
-              {activeTab === 'learning' && (
+              {activeTab === 'planing' && (
                 <LearningTab
                   user={user}
                   currentUser={currentUser}

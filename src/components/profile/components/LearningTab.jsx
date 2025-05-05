@@ -62,7 +62,7 @@ const LearningTab = () => {
     };
   }, [navigate, addToast]);
 
-  // Fetch user's learning plans
+  // Fetch user's planing plans
   useEffect(() => {
     if (!currentUser?.id) return;
 
@@ -72,7 +72,7 @@ const LearningTab = () => {
       setIsLoadingPlans(true);
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${API_BASE_URL}/learning-plan/user/${currentUser.id}`, {
+        const response = await fetch(`${API_BASE_URL}/meal-plan/user/${currentUser.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -131,7 +131,7 @@ const LearningTab = () => {
           uniqueSourcePlanIds.map(async (sourcePlanId) => {
             try {
               // Fetch the original plan to get its userId
-              const planResponse = await fetch(`${API_BASE_URL}/learning-plan/${sourcePlanId}`, {
+              const planResponse = await fetch(`${API_BASE_URL}/meal-plan/${sourcePlanId}`, {
                 headers: { Authorization: `Bearer ${token}` },
               });
 
@@ -202,7 +202,7 @@ const LearningTab = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning-plan/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/meal-plan/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -224,7 +224,7 @@ const LearningTab = () => {
   };
 
   const handleEdit = (id) => {
-    navigate(`/learning-plans/edit/${id}`);
+    navigate(`/meal-plans/edit/${id}`);
   };
 
   const handleViewPlan = (plan) => {
@@ -238,7 +238,7 @@ const LearningTab = () => {
   const handleFollowPlan = async (planId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/learning-plan/follow/${planId}`, {
+      const response = await fetch(`${API_BASE_URL}/meal-plan/follow/${planId}`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -267,7 +267,7 @@ const LearningTab = () => {
 
       addToast('Meal plan followed successfully!', 'success');
       // Refresh followed plans
-      const userPlansResponse = await fetch(`${API_BASE_URL}/learning-plan/user/${currentUser.id}`, {
+      const userPlansResponse = await fetch(`${API_BASE_URL}/meal-plan/user/${currentUser.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (userPlansResponse.ok) {
@@ -313,7 +313,7 @@ const LearningTab = () => {
     try {
       const token = localStorage.getItem('token');
       const planToUpdate = updatedPlans.find((p) => p.id === planId);
-      const response = await fetch(`${API_BASE_URL}/learning-plan/${planId}`, {
+      const response = await fetch(`${API_BASE_URL}/meal-plan/${planId}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -412,7 +412,7 @@ const LearningTab = () => {
                 Back to Plans
               </button>
               {selectedPlan.userId === currentUser.id && (
-                <button onClick={() => navigate('/learning-plans/create')} className={styles.breadcrumbLink}>
+                <button onClick={() => navigate('/meal-plans/create')} className={styles.breadcrumbLink}>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
@@ -486,7 +486,7 @@ const LearningTab = () => {
 
               <div className="mb-4">
                 <h3 className={styles.sectionTitleInner}>About This Plan</h3>
-                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this learning plan.'}</p>
+                <p className="text-gray-600 leading-relaxed">{selectedPlan.description || 'No description provided for this planing plan.'}</p>
               </div>
 
               <div className={styles.divider}></div>
@@ -585,7 +585,7 @@ const LearningTab = () => {
               <div className={styles.headerContainer}>
                 <h1 className={styles.headerTitle}>My Meal Plans</h1>
                 <button 
-  onClick={() => navigate('/learning-plans/create')} 
+  onClick={() => navigate('/meal-plans/create')} 
   className="flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-md transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
 >
   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -606,7 +606,7 @@ const LearningTab = () => {
                   </svg>
                   <p className={styles.emptyText}>No meal plans found. Create one to get started!</p>
                   <button
-                    onClick={() => navigate('/learning-plans/create')}
+                    onClick={() => navigate('/meal-plans/create')}
                     className="mt-4 px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg shadow transition-colors duration-200 font-medium"
                   >
                     Create My First Plan
@@ -631,7 +631,7 @@ const LearningTab = () => {
                       </div>
 
                       <p className={styles.description}>
-                        {plan.description || 'No description provided for this learning plan.'}
+                        {plan.description || 'No description provided for this meal plan.'}
                       </p>
 
                       {Array.isArray(plan.weeks) && plan.weeks.length > 0 && (
@@ -685,7 +685,7 @@ const LearningTab = () => {
                   </svg>
                   <p className={styles.emptyText}>No followed meal plans found.</p>
                   <button
-                    onClick={() => navigate('/learning-plans')}
+                    onClick={() => navigate('/meal-plans')}
                     className="mt-4 px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg shadow transition-colors duration-200 font-medium"
                   >
                     Discover Plans to Follow
