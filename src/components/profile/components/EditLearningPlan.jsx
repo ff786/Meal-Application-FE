@@ -300,6 +300,10 @@ const EditLearningPlan = () => {
         body: JSON.stringify({
           title: formData.title,
           description: formData.description,
+          age: formData.age,
+          weight: formData.weight,
+          height: formData.height,
+          gender: formData.gender,
           resources: formData.resources,
           weeks: formData.weeks,
         }),
@@ -349,7 +353,7 @@ const EditLearningPlan = () => {
       <Navbar user={currentUser} />
       <div className="max-w-4xl mx-auto pt-8 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">Edit meal Plan</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Edit Meal Plan</h1>
           <button
             onClick={() => navigate('/learning-plans/my-plans')}
             className="flex items-center text-orange-600 hover:text-orange-800 font-medium text-sm transition-colors duration-200"
@@ -405,116 +409,109 @@ const EditLearningPlan = () => {
             )}
           </div>
 
-           {/* Personal Details */}
-<div className="border border-gray-200 rounded-lg p-6 mb-6">
-  <h2 className="text-lg font-semibold text-gray-800 mb-4">Personal Details</h2>
-  
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {/* Age */}
-    <div className="mb-4">
-      <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
-        Age
-      </label>
-      <input
-        type="number"
-        id="age"
-        name="age"
-        min="1"
-        max="120"
-        value={formData.age}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('age')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.age || hasAttemptedSubmit) && errors.age ? 'border-red-500' : 'border-gray-300'
-        }`}
-        placeholder="Your age"
-        required
-      />
-      {(touched.age || hasAttemptedSubmit) && errors.age && (
-        <p className="mt-1 text-sm text-red-600">{errors.age}</p>
-      )}
-    </div>
+          <div className="border border-gray-200 rounded-lg p-6 mb-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Personal Details</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="mb-4">
+                <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
+                  Age
+                </label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  min="1"
+                  max="120"
+                  value={formData.age}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('age')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.age || hasAttemptedSubmit) && errors.age ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder="Your age"
+                  required
+                />
+                {(touched.age || hasAttemptedSubmit) && errors.age && (
+                  <p className="mt-1 text-sm text-red-600">{errors.age}</p>
+                )}
+              </div>
 
-    {/* Gender */}
-    <div className="mb-4">
-      <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
-        Gender
-      </label>
-      <select
-        id="gender"
-        name="gender"
-        value={formData.gender}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('gender')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.gender || hasAttemptedSubmit) && errors.gender ? 'border-red-500' : 'border-gray-300'
-        }`}
-        required
-      >
-        <option value="">Select gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-        <option value="prefer-not-to-say">Prefer not to say</option>
-      </select>
-      {(touched.gender || hasAttemptedSubmit) && errors.gender && (
-        <p className="mt-1 text-sm text-red-600">{errors.gender}</p>
-      )}
-    </div>
+              <div className="mb-4">
+                <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={formData.gender}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('gender')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.gender || hasAttemptedSubmit) && errors.gender ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  required
+                >
+                  <option value="">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                  <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+                {(touched.gender || hasAttemptedSubmit) && errors.gender && (
+                  <p className="mt-1 text-sm text-red-600">{errors.gender}</p>
+                )}
+              </div>
 
-    {/* Height */}
-    <div className="mb-4">
-      <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
-        Height (cm)
-      </label>
-      <input
-        type="number"
-        id="height"
-        name="height"
-        min="100"
-        max="250"
-        value={formData.height}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('height')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.height || hasAttemptedSubmit) && errors.height ? 'border-red-500' : 'border-gray-300'
-        }`}
-        placeholder="Your height in cm"
-        required
-      />
-      {(touched.height || hasAttemptedSubmit) && errors.height && (
-        <p className="mt-1 text-sm text-red-600">{errors.height}</p>
-      )}
-    </div>
+              <div className="mb-4">
+                <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
+                  Height (cm)
+                </label>
+                <input
+                  type="number"
+                  id="height"
+                  name="height"
+                  min="100"
+                  max="250"
+                  value={formData.height}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('height')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.height || hasAttemptedSubmit) && errors.height ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder="Your height in cm"
+                  required
+                />
+                {(touched.height || hasAttemptedSubmit) && errors.height && (
+                  <p className="mt-1 text-sm text-red-600">{errors.height}</p>
+                )}
+              </div>
 
-    {/* Weight */}
-    <div className="mb-4">
-      <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-1">
-        Weight (kg)
-      </label>
-      <input
-        type="number"
-        id="weight"
-        name="weight"
-        min="20"
-        max="300"
-        step="0.1"
-        value={formData.weight}
-        onChange={(e) => handleInputChange(e)}
-        onBlur={() => handleBlur('weight')}
-        className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
-          (touched.weight || hasAttemptedSubmit) && errors.weight ? 'border-red-500' : 'border-gray-300'
-        }`}
-        placeholder="Your weight in kg"
-        required
-      />
-      {(touched.weight || hasAttemptedSubmit) && errors.weight && (
-        <p className="mt-1 text-sm text-red-600">{errors.weight}</p>
-      )}
-    </div>
-  </div>
-</div>
-
+              <div className="mb-4">
+                <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-1">
+                  Weight (kg)
+                </label>
+                <input
+                  type="number"
+                  id="weight"
+                  name="weight"
+                  min="20"
+                  max="300"
+                  step="0.1"
+                  value={formData.weight}
+                  onChange={(e) => handleInputChange(e)}
+                  onBlur={() => handleBlur('weight')}
+                  className={`block w-full border rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm transition duration-150 ${
+                    (touched.weight || hasAttemptedSubmit) && errors.weight ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder="Your weight in kg"
+                  required
+                />
+                {(touched.weight || hasAttemptedSubmit) && errors.weight && (
+                  <p className="mt-1 text-sm text-red-600">{errors.weight}</p>
+                )}
+              </div>
+            </div>
+          </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-4">
@@ -616,6 +613,18 @@ const EditLearningPlan = () => {
                       placeholder="https://example.com"
                       required
                     />
+                    {resource.url && !errors[`resourceUrl${index}`] && (
+                      <div className="mt-1">
+                        <a 
+                          href={resource.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-orange-600 hover:text-orange-800 text-sm break-all"
+                        >
+                          {resource.url.length > 50 ? `${resource.url.substring(0, 50)}...` : resource.url}
+                        </a>
+                      </div>
+                    )}
                     {(touched[`resourcesUrl${index}`] || hasAttemptedSubmit) && errors[`resourceUrl${index}`] && (
                       <p className="mt-1 text-sm text-red-600">{errors[`resourceUrl${index}`]}</p>
                     )}
@@ -755,6 +764,7 @@ const EditLearningPlan = () => {
                 </>
               ) : (
                 <>
+                
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
