@@ -266,7 +266,7 @@ const ViewAllLearningPlans = () => {
 
   // CSS classes
   const styles = {
-    container: "min-h-screen bg-gradient-to-b from-blue-50 to-white",
+    container: "min-h-screen bg-gradient-to-b from-orange-50 to-white",
     wrapper: "max-w-5xl mx-auto pt-8 pb-12 px-4 sm:px-6 lg:px-8",
     loadingContainer: "flex justify-center items-center min-h-screen",
     loadingSpinner: "animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-indigo-600",

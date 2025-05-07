@@ -90,7 +90,7 @@ const AboutSection = ({
             ></textarea>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Nutrients (comma separated)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Focus On</label>
             <input
               type="text"
               value={editForm.skills.join(', ')}
